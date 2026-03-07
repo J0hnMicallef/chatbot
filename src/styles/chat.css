@@ -207,3 +207,11 @@ body {
 .input-bar__btn:not(:disabled) { cursor: pointer; }
 .input-bar__btn:not(:disabled):hover { background: #22225a; }
 .input-bar__btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.chat-header__counter {
+  margin-left: auto;
+  padding-right: 8px;
+  color: #ffffff;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}

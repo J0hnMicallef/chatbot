@@ -73,6 +73,7 @@ export default function ChatWindow() {
         <span className="chat-header__label">
           GROQBOT — Groq
         </span>
+        &nbsp;&nbsp;&nbsp;
         <span className="chat-header__counter">
           {userMsgCount}/{MAX_MSGS_PER_SESSION}
         </span>

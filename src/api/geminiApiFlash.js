@@ -7,7 +7,7 @@
 //
 // ─────────────────────────────────────────────────────────────
 
-const GEMINI_MODEL = "gemini-2.0-flash";
+const GEMINI_MODEL = "gemini-2.0-flash-lite";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 const SYSTEM_PROMPT = "Tu es un assistant concis et utile. Réponds en français, de manière courte et précise. Tu t'appelles GeminiBot.";

@@ -1,10 +1,10 @@
-# 🧠 HaikuBot
+# HaikuBot
 
 Chatbot React propulsé par Claude Haiku (Anthropic).
 
 ---
 
-## 📁 Structure du projet
+## Structure du projet
 
 ```
 haikubot/
@@ -25,7 +25,7 @@ haikubot/
 │   └── main.jsx              ← Point d'entrée React
 ├── index.html
 ├── package.json
-├── vite.config.js            ← ⚠️ Pense à changer "base" avec ton nom de repo
+├── vite.config.js            
 └── .gitignore
 ```
 

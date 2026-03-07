@@ -77,7 +77,7 @@ const BLOCKED_WORDS = [
   "prompt injection", "system prompt",
   "ignore previous", "nouvelle instruction",
   "act as", "pretend you are",
-
+  
 ];
 
 export default BLOCKED_WORDS;

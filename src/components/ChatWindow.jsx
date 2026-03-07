@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect }          from "react";
-import { sendMessage }                          from "../api/claudeApi";
+import { sendMessage }                          from "../api/geminiApiFlash";
 import { filterMessage, MAX_MSGS_PER_SESSION }  from "../utils/messageFilter";
 import Message                                  from "./Message";
 import TypingIndicator                          from "./TypingIndicator";

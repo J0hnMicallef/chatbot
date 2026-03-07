@@ -1,13 +1,13 @@
 // ─────────────────────────────────────────────────────────────
 // src/api/GeminiApiFlash.js
 //
-// Gemini 1.5 Flash — 100% gratuit, sans CB
+// Gemini 2.0 Flash — 100% gratuit, sans CB
 //    • 1 500 requêtes / jour
 //    • 1 000 000 tokens / minute
 //
 // ─────────────────────────────────────────────────────────────
 
-const GEMINI_MODEL = "gemini-1.5-flash";
+const GEMINI_MODEL = "gemini-2.0-flash";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 const SYSTEM_PROMPT = "Tu es un assistant concis et utile. Réponds en français, de manière courte et précise. Tu t'appelles GeminiBot.";

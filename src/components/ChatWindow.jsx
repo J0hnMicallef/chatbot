@@ -71,7 +71,7 @@ export default function ChatWindow() {
       <div className="chat-header">
         <div className="chat-header__dot" />
         <span className="chat-header__label">
-          GEMINIBOT — Gemini 1.5 Flash
+          GEMINIBOT — Gemini 2.0 Flash
         </span>
         <span className="chat-header__counter">
           {userMsgCount}/{MAX_MSGS_PER_SESSION}

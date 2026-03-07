@@ -1,27 +1,22 @@
-// ─────────────────────────────────────────────────────────────
-// src/components/ChatWindow.jsx
-// Fenêtre principale : header + liste de messages + input.
-// ─────────────────────────────────────────────────────────────
-
-import { useState, useRef, useEffect } from "react";
-import { sendMessage } from "../api/claudeApi";
-import Message         from "./Message";
-import TypingIndicator from "./TypingIndicator";
-import InputBar        from "./InputBar";
+import { useState, useRef, useEffect }          from "react";
+import { sendMessage }                          from "../api/claudeApi";
+import { filterMessage, MAX_MSGS_PER_SESSION }  from "../utils/messageFilter";
+import Message                                  from "./Message";
+import TypingIndicator                          from "./TypingIndicator";
+import InputBar                                 from "./InputBar";
 
 const WELCOME = {
   role: "bot",
-  text: "Bonjour ! Je suis HaikuBot, propulsé par Claude Haiku. Comment puis-je t'aider ?",
+  text: "Bonjour ! Je suis GeminiBot. Comment puis-je t'aider ?",
 };
 
 export default function ChatWindow() {
-  const [messages, setMessages] = useState([WELCOME]);
-  const [input,    setInput]    = useState("");
-  const [loading,  setLoading]  = useState(false);
-  const [error,    setError]    = useState(null);
+  const [messages,     setMessages]     = useState([WELCOME]);
+  const [input,        setInput]        = useState("");
+  const [loading,      setLoading]      = useState(false);
+  const [userMsgCount, setUserMsgCount] = useState(0);
   const bottomRef = useRef(null);
 
-  // Scroll automatique vers le bas à chaque nouveau message
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
@@ -30,30 +25,41 @@ export default function ChatWindow() {
     const text = input.trim();
     if (!text || loading) return;
 
-    setInput("");
-    setError(null);
+    // ── Limite de session ──────────────────────────────────
+    if (userMsgCount >= MAX_MSGS_PER_SESSION) {
+      setMessages((prev) => [
+        ...prev,
+        { role: "user", text },
+        { role: "bot",  text: `Limite de ${MAX_MSGS_PER_SESSION} messages atteinte pour cette session.` },
+      ]);
+      setInput("");
+      return;
+    }
 
-    // 1. Ajouter le message utilisateur
+    // ── Filtre de contenu ──────────────────────────────────
+    const filterError = filterMessage(text);
+    if (filterError) {
+      setMessages((prev) => [
+        ...prev,
+        { role: "user", text },
+        { role: "bot",  text: filterError },
+      ]);
+      setInput("");
+      return;
+    }
+
+    setInput("");
+    setUserMsgCount((c) => c + 1);
+
     const updated = [...messages, { role: "user", text }];
     setMessages(updated);
     setLoading(true);
 
     try {
-      // 2. On retire le message de bienvenue de l'historique envoyé à l'API
-      //    (il n'a pas été produit par l'API, ce n'est qu'un message local)
-      const history = updated.slice(1);
-
-      // 3. Appel API (logique isolée dans claudeApi.js)
-      const reply = await sendMessage(history);
-
-      // 4. Ajouter la réponse du bot
+      const reply = await sendMessage(updated.slice(1));
       setMessages((prev) => [...prev, { role: "bot", text: reply }]);
     } catch (err) {
-      setError(err.message);
-      setMessages((prev) => [
-        ...prev,
-        { role: "bot", text: ` Erreur : ${err.message}` },
-      ]);
+      setMessages((prev) => [...prev, { role: "bot", text: `Erreur : ${err.message}` }]);
     } finally {
       setLoading(false);
     }
@@ -65,7 +71,10 @@ export default function ChatWindow() {
       <div className="chat-header">
         <div className="chat-header__dot" />
         <span className="chat-header__label">
-          CLAUDE HAIKU — claude-haiku-4-5-20251001
+          GEMINIBOT — Gemini 1.5 Flash
+        </span>
+        <span className="chat-header__counter">
+          {userMsgCount}/{MAX_MSGS_PER_SESSION}
         </span>
       </div>
 

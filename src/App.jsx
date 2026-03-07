@@ -11,8 +11,7 @@ export default function App() {
     <div className="page">
       {/* ── Titre ── */}
       <div className="title-block">
-        <h1>HaikuBot</h1>
-        <p>Propulsé par Claude Haiku — léger &amp; rapide</p>
+        <h1>ChatBot</h1>
       </div>
 
       {/* ── Chat ── */}

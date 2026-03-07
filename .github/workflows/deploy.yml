@@ -1,6 +1,4 @@
-# .github/workflows/deploy.yml
-
-name: Deploy HaikuBot to GitHub Pages
+name: Deploy ChatBot to GitHub Pages
 
 on:
   push:

@@ -1,5 +1,4 @@
 // ─────────────────────────────────────────────────────────────
-// src/components/TypingIndicator.jsx
 // Animation "trois points" pendant que le bot réfléchit.
 // ─────────────────────────────────────────────────────────────
 

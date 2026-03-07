@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect }          from "react";
-import { sendMessage }                          from "../api/geminiApiFlash";
+import { sendMessage }                          from "../api/groqApi";
 import { filterMessage, MAX_MSGS_PER_SESSION }  from "../utils/messageFilter";
 import Message                                  from "./Message";
 import TypingIndicator                          from "./TypingIndicator";
@@ -7,7 +7,7 @@ import InputBar                                 from "./InputBar";
 
 const WELCOME = {
   role: "bot",
-  text: "Bonjour ! Je suis GeminiBot. Comment puis-je t'aider ?",
+  text: "Bonjour ! Je suis GroqBot. Comment puis-je t'aider ?",
 };
 
 export default function ChatWindow() {
@@ -71,7 +71,7 @@ export default function ChatWindow() {
       <div className="chat-header">
         <div className="chat-header__dot" />
         <span className="chat-header__label">
-          GEMINIBOT — Gemini 2.0 Flash
+          GROQBOT — Groq
         </span>
         <span className="chat-header__counter">
           {userMsgCount}/{MAX_MSGS_PER_SESSION}

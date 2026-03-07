@@ -1,6 +1,6 @@
 # ChatBot
 
-J'utilise l'API Gemini flash
+J'utilise l'API Groq
 
 ---
 
@@ -13,7 +13,7 @@ chatbot/
 │       └── deploy.yml        ← GitHub Actions (déploiement auto)
 ├── src/
 │   ├── api/
-│   │   └── GeminiApiFlash.js      ← Communication avec l'API CGemini flash
+│   │   └── groqApi.js      ← Communication avec l'API groq
 │   ├── components/
 │   │   ├── ChatWindow.jsx    ← Fenêtre principale du chat
 │   │   ├── InputBar.jsx      ← Barre de saisie + bouton

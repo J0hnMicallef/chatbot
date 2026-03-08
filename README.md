@@ -1,3 +1,6 @@
+## Lien du chatbot
+https://j0hnmicallef.github.io/chatbot/
+
 # ChatBot
 
 J'utilise l'API Groq
